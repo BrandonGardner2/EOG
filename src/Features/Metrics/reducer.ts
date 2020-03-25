@@ -24,7 +24,7 @@ const initialState: MetricState = {
   names: [],
 };
 
-const slice = createSlice({
+const metricSlice = createSlice({
   name: 'metrics',
   initialState,
   reducers: {
@@ -35,5 +35,9 @@ const slice = createSlice({
   },
 });
 
-const { reducer, actions } = slice;
-export { reducer, actions };
+// I'm going to use destructuring here so that I can rely on intellisense in other areas for importing easier.
+// It also helps make it obvious what is happening.
+const { reducer: metricReducer, actions } = metricSlice;
+export default metricReducer;
+
+export const { addMetricsNames } = actions;
