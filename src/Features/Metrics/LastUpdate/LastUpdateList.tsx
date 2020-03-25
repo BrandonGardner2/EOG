@@ -8,7 +8,7 @@ import { getLatestUpdates } from "../selectors";
 
 const useStyles = makeStyles({
   container: {
-    height: "400px",
+    maxHeight: "475px",
     padding: "0 16px",
     overflow: "auto",
   },

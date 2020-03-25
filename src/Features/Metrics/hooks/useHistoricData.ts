@@ -1,9 +1,8 @@
-import { MetricState, replaceDataForMetrics } from "./../reducer";
 import { useSelector, useDispatch } from "react-redux";
 import { useQuery } from "urql";
 import { useRef, useEffect, useState, useCallback, useMemo } from "react";
-import { MetricData } from "../reducer";
-import { getActiveMetrics } from "../selectors";
+import { MetricState, replaceDataForMetrics, MetricData } from "../reducer";
+import { getActiveMetrics, getDenormalizedActiveData } from "../selectors";
 
 const query = `
 query($input: [MeasurementQuery]) {
@@ -26,6 +25,7 @@ export type MultipleMetricResponse = {
 
 const useHistoricData = () => {
   const dispatch = useDispatch();
+  const historicData = useSelector(getDenormalizedActiveData);
   const activeMetrics = useSelector(getActiveMetrics);
   const [lastFetchTime, setLastFetchTime] = useState<Date>();
   const interval = useRef<NodeJS.Timeout | undefined>();
@@ -83,7 +83,7 @@ const useHistoricData = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return "";
+  return historicData;
 };
 
 export default useHistoricData;

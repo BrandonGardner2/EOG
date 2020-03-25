@@ -16,6 +16,12 @@ const useStyles = makeStyles({
   leftColumn: {
     padding: "8px 0 8px 16px",
   },
+  chartContainer: {
+    height: "450px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+  },
 });
 
 const query = `
@@ -58,7 +64,7 @@ const Metrics = () => {
             </Grid>
           </Grid>
           {/* The Chart section will also get its own row. */}
-          <Grid item xs={12}>
+          <Grid item xs={12} className={classes.chartContainer}>
             <HistoricChart />
           </Grid>
         </Grid>

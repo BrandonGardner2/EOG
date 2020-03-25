@@ -1,6 +1,6 @@
+import { createSelector } from "redux-starter-kit";
 import { MetricState } from "./reducer";
 import { IState } from "../../store/index";
-import { createSelector } from "redux-starter-kit";
 import denormalizeMetricData from "./utils/denormalizeData";
 
 const metricStateSelector = (state: IState) => state.metrics;
@@ -46,13 +46,12 @@ const getLatestUpdates = createSelector([getActiveMetrics, getMetricDataByName],
   return activeMetrics.map((metric: string) => {
     const data = getDataForName(metric);
     if (data.length) return data[data.length - 1];
-    else
-      return {
-        metric,
-        at: 0,
-        value: "None",
-        unit: "",
-      };
+    return {
+      metric,
+      at: 0,
+      value: "None",
+      unit: "",
+    };
   });
 });
 
