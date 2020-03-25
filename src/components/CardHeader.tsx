@@ -9,4 +9,8 @@ const styles = (theme: Theme) => ({
     color: 'white',
   },
 });
-export default withStyles(styles)(CardHeader);
+
+// I noticed this shares the CardHeader name from material ui. Making it explicit this is a themed header.
+const ThemedCardHeader = withStyles(styles)(CardHeader);
+
+export default ThemedCardHeader;
