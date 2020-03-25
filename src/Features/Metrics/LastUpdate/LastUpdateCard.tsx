@@ -43,7 +43,7 @@ const LastUpdateCard = ({ data }: OwnProps) => {
     <ListItem className={classes.listItem}>
       <ListItemText
         primary={definitions.names[data.metric] || "Unknown Metric"}
-        secondary={`Latest value: ${data.value} ${data.unit}`}
+        secondary={`Latest: ${data.value} ${data.unit}`}
         primaryTypographyProps={{ variant: "h6" }}
       />
       <ListItemIcon className={classes.listIcon} onClick={handleDelete}>

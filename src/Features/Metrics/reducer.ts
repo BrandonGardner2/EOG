@@ -54,6 +54,9 @@ const metricSlice = createSlice({
       if (!state.dataByName[metric]) state.dataByName[metric] = [];
       state.dataByName[metric].push(action.payload);
     },
+    replaceDataForMetrics(state, action: PayloadAction<MetricState["dataByName"]>) {
+      state.dataByName = action.payload;
+    },
     updateLiveStatus(state) {
       state.isLive = !state.isLive;
       // Reset data, because we are going to swap from query/subscription
@@ -67,4 +70,11 @@ const metricSlice = createSlice({
 const { reducer: metricReducer, actions } = metricSlice;
 export default metricReducer;
 
-export const { addMetricsNames, updateActiveMetrics, updateLimit, addDataToMetric, updateLiveStatus } = actions;
+export const {
+  addMetricsNames,
+  updateActiveMetrics,
+  updateLimit,
+  addDataToMetric,
+  updateLiveStatus,
+  replaceDataForMetrics,
+} = actions;

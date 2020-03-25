@@ -1,6 +1,8 @@
+import { MetricState, replaceDataForMetrics } from "./../reducer";
 import { useSelector, useDispatch } from "react-redux";
 import { useQuery } from "urql";
 import { useRef, useEffect, useState, useCallback, useMemo } from "react";
+import { MetricData } from "../reducer";
 import { getActiveMetrics } from "../selectors";
 
 const query = `
@@ -17,12 +19,16 @@ query($input: [MeasurementQuery]) {
 }
 `;
 
+export type MultipleMetricResponse = {
+  metric: string;
+  measurements: MetricData[];
+};
+
 const useHistoricData = () => {
   const dispatch = useDispatch();
   const activeMetrics = useSelector(getActiveMetrics);
-  const [refetch, setRefetch] = useState(false);
+  const [lastFetchTime, setLastFetchTime] = useState<Date>();
   const interval = useRef<NodeJS.Timeout | undefined>();
-
   const queryVariables = useMemo(() => {
     return activeMetrics.map(metric => {
       return {
@@ -33,7 +39,7 @@ const useHistoricData = () => {
       };
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeMetrics, refetch]);
+  }, [activeMetrics, lastFetchTime]);
 
   const [result] = useQuery({
     query,
@@ -42,9 +48,17 @@ const useHistoricData = () => {
     requestPolicy: "network-only",
   });
 
-  const handleResult = useCallback((res: any) => {
-    console.log(res);
-  }, []);
+  const handleResult = useCallback(
+    (data: MultipleMetricResponse[]) => {
+      const updateObject = data.reduce((acc, cur) => {
+        acc[cur.metric] = cur.measurements;
+        return acc;
+      }, {} as MetricState["dataByName"]);
+
+      dispatch(replaceDataForMetrics(updateObject));
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     if (result?.data?.getMultipleMeasurements) {
@@ -57,7 +71,7 @@ const useHistoricData = () => {
   useEffect(() => {
     if (!interval.current) {
       interval.current = setInterval(() => {
-        setRefetch(!refetch);
+        setLastFetchTime(new Date());
       }, 60000);
     }
 
