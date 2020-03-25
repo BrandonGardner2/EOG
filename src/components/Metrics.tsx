@@ -11,6 +11,7 @@ import HistoricLabel from "../Features/Metrics/HistoricLabel/HistoricLabel";
 import { getLiveStatus } from "../Features/Metrics/selectors";
 import { addMetricsNames } from "../Features/Metrics/reducer";
 import HistoricChart from "../Features/Metrics/Chart/HistoricChart";
+import LiveChart from "../Features/Metrics/Chart/LiveChart";
 
 const useStyles = makeStyles({
   leftColumn: {
@@ -65,7 +66,7 @@ const Metrics = () => {
           </Grid>
           {/* The Chart section will also get its own row. */}
           <Grid item xs={12} className={classes.chartContainer}>
-            <HistoricChart />
+            {isLive ? <LiveChart /> : <HistoricChart />}
           </Grid>
         </Grid>
       </Grid>
