@@ -20,6 +20,7 @@ export type MetricState = {
   names: string[];
   activeNames: string[];
   limit: number | undefined;
+  isLive: boolean;
 };
 
 const initialState: MetricState = {
@@ -27,6 +28,7 @@ const initialState: MetricState = {
   names: [],
   activeNames: [],
   limit: undefined,
+  isLive: false,
 };
 
 const metricSlice = createSlice({
@@ -52,6 +54,9 @@ const metricSlice = createSlice({
       if (!state.dataByName[metric]) state.dataByName[metric] = [];
       state.dataByName[metric].push(action.payload);
     },
+    updateLiveStatus(state) {
+      state.isLive = !state.isLive;
+    },
   },
 });
 
@@ -60,4 +65,4 @@ const metricSlice = createSlice({
 const { reducer: metricReducer, actions } = metricSlice;
 export default metricReducer;
 
-export const { addMetricsNames, updateActiveMetrics, updateLimit, addDataToMetric } = actions;
+export const { addMetricsNames, updateActiveMetrics, updateLimit, addDataToMetric, updateLiveStatus } = actions;

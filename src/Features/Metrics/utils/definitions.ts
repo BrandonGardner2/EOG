@@ -1,9 +1,9 @@
 type Definitions = {
-  metrics: { [key: string]: string };
+  names: { [key: string]: string };
 };
 
 export default {
-  metrics: {
+  names: {
     casingPressure: 'Casing Pressure',
     flareTemp: 'Flare Temp',
     injValveOpen: 'Inj Valve Open',

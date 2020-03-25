@@ -9,6 +9,8 @@ const useStyles = makeStyles({
     margin: '5% 25%',
   },
   cardContent: {
+    display: 'flex',
+    flexWrap: 'wrap',
     minHeight: '300px',
   },
 });

@@ -1,4 +1,4 @@
-import { MetricState, MetricData } from './reducer';
+import { MetricState } from './reducer';
 import { IState } from '../../store/index';
 import { createSelector } from 'redux-starter-kit';
 import denormalizeMetricData from './utils/denormalizeData';
@@ -14,6 +14,8 @@ const getMetricData = createSelector(metricStateSelector, metrics => metrics.dat
 const getMetricDataLimit = createSelector(metricStateSelector, metrics => metrics.limit);
 
 const getActiveMetrics = createSelector(metricStateSelector, metrics => metrics.activeNames);
+
+const getLiveStatus = createSelector(metricStateSelector, metrics => metrics.isLive);
 
 // Returns a callback that takes in a name to return a specific set of data.
 const getMetricDataByName = createSelector([getMetricData], metricData => (name: string) => {
@@ -51,6 +53,7 @@ const getDenormalizedActiveData = createSelector([getActiveMetricsData, getMetri
 });
 
 export {
+  getLiveStatus,
   getActiveMetrics,
   getMetricNames,
   getMetricData,

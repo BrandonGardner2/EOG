@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import { Card, List, makeStyles } from '@material-ui/core';
-import { MetricData } from '../reducer';
+
 import LastUpdateCard from './LastUpdateCard';
+import { MetricData } from '../reducer';
 
 const useStyles = makeStyles({
   card: {
