@@ -1,11 +1,13 @@
 import React from 'react';
 import { ListItem, ListItemText, makeStyles, ListItemIcon } from '@material-ui/core';
-import { MetricData } from '../reducer';
+import DeleteIcon from '@material-ui/icons/HighlightOff';
+import { useDispatch, useSelector } from 'react-redux';
 // I made a definitions file just to have prettier display names.
 // Typically I would expect some kind of display name from the API.
 // but this can be used in absence assuming all possible values are known ahead of time.
 import definitions from '../utils/definitions';
-import DeleteIcon from '@material-ui/icons/HighlightOff';
+import { MetricData, updateActiveMetrics } from '../reducer';
+import { getActiveMetrics } from '../selectors';
 
 const useStyles = makeStyles({
   listItem: {
@@ -29,6 +31,13 @@ type OwnProps = {
 
 const LastUpdateCard = ({ data }: OwnProps) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const activeMetrics = useSelector(getActiveMetrics);
+
+  const handleDelete = () => {
+    const newActive = activeMetrics.filter(metric => metric !== data.metric);
+    dispatch(updateActiveMetrics(newActive));
+  };
 
   return (
     <ListItem className={classes.listItem}>
@@ -37,7 +46,7 @@ const LastUpdateCard = ({ data }: OwnProps) => {
         secondary={`Latest value: ${data.value} ${data.unit}`}
         primaryTypographyProps={{ variant: 'h6' }}
       />
-      <ListItemIcon className={classes.listIcon}>
+      <ListItemIcon className={classes.listIcon} onClick={handleDelete}>
         <DeleteIcon />
       </ListItemIcon>
     </ListItem>
