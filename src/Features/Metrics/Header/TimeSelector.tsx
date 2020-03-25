@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Switch, InputLabel, makeStyles, Container, Grid } from '@material-ui/core';
+import { Switch, InputLabel, makeStyles, Grid } from '@material-ui/core';
 
 import { getLiveStatus } from '../selectors';
 import { updateLiveStatus } from '../reducer';
@@ -39,7 +39,7 @@ const TimeSelector = () => {
   };
 
   return (
-    <Grid item xs={4} className={classes.container}>
+    <Grid item xs={3} className={classes.container}>
       <InputLabel className={classes.label}>Live Data</InputLabel>
       <Switch
         classes={{ switchBase: classes.switchBase, checked: classes.checked, track: classes.track }}
