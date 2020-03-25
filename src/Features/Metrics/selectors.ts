@@ -62,6 +62,12 @@ const getActiveMetricsData = createSelector(
 const getDenormalizedActiveData = createSelector(
   [getActiveMetricsData, getMetricDataLimit],
   (dataByName, limit) => {
+    // I could just use a really long array for absolutely everything.
+    // In the interest of saving on some memory I think it may be more beneficial
+    // to denormalize using the timestamp.
+    // Ex: if we have 100 unique timestamps and 5 active metrics that all have data for those timestamps
+    // We need to use an array that is 500 in length.
+    // If we denormalize we only need an array that is 100 in length.
     return denormalizeMetricData(dataByName, limit);
   },
 );
