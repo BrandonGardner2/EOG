@@ -1,5 +1,5 @@
-import { MetricState, MetricData } from './../reducer';
-import sliceDataFromEnd from './sliceData';
+import { MetricState, MetricData } from "./../reducer";
+import sliceDataFromEnd from "./sliceData";
 
 type TimestampData = {
   [key: string]: {};
@@ -13,7 +13,7 @@ const buildDataForTimestamp = (data: MetricData) => {
   };
 };
 
-const denormalizeMetricData = (dataByName: MetricState['dataByName'], limit: number | undefined) => {
+const denormalizeMetricData = (dataByName: MetricState["dataByName"], limit: number | undefined) => {
   // In retrospect, maybe my data should have been by timestamp the entire time so that this process could be easier.
   const dataByTimestamp: TimestampData = {};
 

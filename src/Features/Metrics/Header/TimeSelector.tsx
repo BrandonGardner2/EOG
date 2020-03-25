@@ -1,28 +1,28 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Switch, InputLabel, makeStyles, Grid } from '@material-ui/core';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Switch, InputLabel, makeStyles, Grid } from "@material-ui/core";
 
-import { getLiveStatus } from '../selectors';
-import { updateLiveStatus } from '../reducer';
+import { getLiveStatus } from "../selectors";
+import { updateLiveStatus } from "../reducer";
 
 const useStyles = makeStyles(theme => {
   return {
     switchBase: {
-      '&$checked': {
+      "&$checked": {
         color: theme.palette.primary.main,
       },
-      '&$checked + $track': {
+      "&$checked + $track": {
         backgroundColor: theme.palette.primary.main,
       },
     },
     checked: {},
     track: {},
     container: {
-      display: 'flex',
+      display: "flex",
     },
     label: {
-      display: 'flex',
-      alignItems: 'center',
+      display: "flex",
+      alignItems: "center",
     },
   };
 });

@@ -1,5 +1,5 @@
-import { reducer as weatherReducer } from '../Features/Weather/reducer';
-import metricsReducer from '../Features/Metrics/reducer';
+import { reducer as weatherReducer } from "../Features/Weather/reducer";
+import metricsReducer from "../Features/Metrics/reducer";
 
 export default {
   weather: weatherReducer,

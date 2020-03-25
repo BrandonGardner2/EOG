@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { actions } from './reducer';
-import { useQuery } from 'urql';
-import { useGeolocation } from 'react-use';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Chip from '../../components/Chip';
-import { IState } from '../../store';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useQuery } from "urql";
+import { useGeolocation } from "react-use";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import Chip from "../../components/Chip";
+import { actions } from "./reducer";
+import { IState } from "../../store";
 
 const query = `
 query($latLong: WeatherQuery!) {

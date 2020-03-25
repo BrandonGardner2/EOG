@@ -1,14 +1,13 @@
-import React from 'react';
-import { Typography, Grid, makeStyles } from '@material-ui/core';
+import React from "react";
+import { Typography, Grid, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   container: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
   },
   text: {
-    color: 'rgba(0, 0, 0, 0.54)',
-    marginLeft: 'auto',
+    color: "rgba(0, 0, 0, 0.54)",
   },
 });
 

@@ -1,19 +1,19 @@
-import React, { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Select, InputLabel, Grid, makeStyles } from '@material-ui/core';
-import useMetricOptions from '../hooks/useMetricOptions';
-import { getActiveMetrics } from '../selectors';
-import { updateActiveMetrics } from '../reducer';
-import MetricItem from './MetricItem';
+import React, { useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Select, InputLabel, Grid, makeStyles, MenuItem } from "@material-ui/core";
+import useMetricOptions from "../hooks/useMetricOptions";
+import { getActiveMetrics } from "../selectors";
+import { updateActiveMetrics } from "../reducer";
+import definitions from "../utils/definitions";
 
 const useStyles = makeStyles({
   container: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
   },
   select: {
-    minWidth: '120px',
-    marginLeft: '5px',
+    minWidth: "120px",
+    marginLeft: "5px",
   },
 });
 
@@ -24,7 +24,7 @@ const MetricInput = () => {
   const { availableOptions } = useMetricOptions();
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    if (typeof event.target.value === 'string') {
+    if (typeof event.target.value === "string") {
       const newActive = [...activeMetrics, event.target.value];
       dispatch(updateActiveMetrics(newActive));
     }
@@ -32,7 +32,11 @@ const MetricInput = () => {
 
   const optionItems = useMemo(() => {
     return availableOptions.map(option => {
-      return <MetricItem metric={option} />;
+      return (
+        <MenuItem key={option} value={option}>
+          {definitions.names[option] || "Unknown Metric"}
+        </MenuItem>
+      );
     });
   }, [availableOptions]);
 

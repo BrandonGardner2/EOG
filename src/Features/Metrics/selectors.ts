@@ -1,7 +1,7 @@
-import { MetricState } from './reducer';
-import { IState } from '../../store/index';
-import { createSelector } from 'redux-starter-kit';
-import denormalizeMetricData from './utils/denormalizeData';
+import { MetricState } from "./reducer";
+import { IState } from "../../store/index";
+import { createSelector } from "redux-starter-kit";
+import denormalizeMetricData from "./utils/denormalizeData";
 
 const metricStateSelector = (state: IState) => state.metrics;
 
@@ -36,11 +36,25 @@ const getActiveMetricsData = createSelector(
       // We are dealing with subscriptions and computation speed matters.
       acc[name] = getDataForName(name);
       return acc;
-    }, {} as MetricState['dataByName']);
+    }, {} as MetricState["dataByName"]);
 
     return dataByMetric;
   },
 );
+
+const getLatestUpdates = createSelector([getActiveMetrics, getMetricDataByName], (activeMetrics, getDataForName) => {
+  return activeMetrics.map((metric: string) => {
+    const data = getDataForName(metric);
+    if (data.length) return data[data.length - 1];
+    else
+      return {
+        metric,
+        at: 0,
+        value: "None",
+        unit: "",
+      };
+  });
+});
 
 const getDenormalizedActiveData = createSelector([getActiveMetricsData, getMetricDataLimit], (dataByName, limit) => {
   // I could just use a really long array for absolutely everything.
@@ -53,6 +67,7 @@ const getDenormalizedActiveData = createSelector([getActiveMetricsData, getMetri
 });
 
 export {
+  getLatestUpdates,
   getLiveStatus,
   getActiveMetrics,
   getMetricNames,

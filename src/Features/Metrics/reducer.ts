@@ -1,10 +1,10 @@
 // I would use the newer redux-toolkit package rather than starter kit as it is now officially supported.
-import { createSlice, PayloadAction } from 'redux-starter-kit';
+import { createSlice, PayloadAction } from "redux-starter-kit";
 
 // Normally I would put types into their own area that are going to be widely used. For this challenge though,
 // I think it is okay for them to be here so that the reviewer can quickly see what my state looks like.
 export type MetricData = {
-  value: number;
+  value: number | string;
   at: number;
   metric: string;
   unit: string;
@@ -32,7 +32,7 @@ const initialState: MetricState = {
 };
 
 const metricSlice = createSlice({
-  name: 'metrics',
+  name: "metrics",
   initialState,
   reducers: {
     addMetricsNames(state, action: PayloadAction<string[]>) {

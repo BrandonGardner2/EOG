@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux';
-import { getActiveMetrics, getMetricNames } from '../selectors';
-import { useMemo } from 'react';
+import { useSelector } from "react-redux";
+import { getActiveMetrics, getMetricNames } from "../selectors";
+import { useMemo } from "react";
 
 // I normally would put this in a util area but I want it here so the reviewer can quickly see what I am doing.
 // This assumes that it is passed two string arrays, but could be abstracted to take a lot of things with a

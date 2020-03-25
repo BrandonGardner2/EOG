@@ -1,27 +1,22 @@
-import React, { useMemo } from 'react';
-import { List, makeStyles, Grid } from '@material-ui/core';
+import React, { useMemo } from "react";
+import { List, makeStyles, Grid } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
-import LastUpdateCard from './LastUpdateCard';
-import { MetricData } from '../reducer';
+import LastUpdateCard from "./LastUpdateCard";
+import { MetricData } from "../reducer";
+import { getLatestUpdates } from "../selectors";
 
 const useStyles = makeStyles({
   container: {
-    height: '400px',
-    padding: '0 16px',
-    overflow: 'auto',
+    height: "400px",
+    padding: "0 16px",
+    overflow: "auto",
   },
 });
 
 const LastUpdateList = () => {
   const classes = useStyles();
-  const latestUpdates: MetricData[] = [
-    { metric: 'oilTemp', at: 1, unit: 'F', value: 100 },
-    { metric: 'injValveOpen', at: 1, unit: 'F', value: 100 },
-    { metric: 'tubingPressure', at: 1, unit: 'F', value: 100 },
-    { metric: 'casingPressure', at: 1, unit: 'F', value: 100 },
-    { metric: 'waterTemp', at: 1, unit: 'F', value: 100 },
-    { metric: 'flareTemp', at: 1, unit: 'F', value: 100 },
-  ];
+  const latestUpdates = useSelector(getLatestUpdates);
 
   const lastUpdateCards = useMemo(() => {
     return latestUpdates
