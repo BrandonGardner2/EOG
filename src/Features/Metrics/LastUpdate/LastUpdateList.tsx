@@ -1,14 +1,12 @@
 import React, { useMemo } from 'react';
-import { Card, List, makeStyles } from '@material-ui/core';
+import { List, makeStyles, Grid } from '@material-ui/core';
 
 import LastUpdateCard from './LastUpdateCard';
 import { MetricData } from '../reducer';
 
 const useStyles = makeStyles({
-  card: {
-    maxWidth: '25%',
-    marginLeft: 'auto',
-    height: '300px',
+  container: {
+    // height: '500px',
     padding: '0 16px',
     overflow: 'auto',
   },
@@ -34,9 +32,9 @@ const LastUpdateList = () => {
   }, [latestUpdates]);
 
   return (
-    <Card className={classes.card}>
+    <Grid item lg={3} className={classes.container}>
       <List>{lastUpdateCards}</List>
-    </Card>
+    </Grid>
   );
 };
 

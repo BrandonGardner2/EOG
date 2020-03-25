@@ -3,6 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles } from '@material-ui/core/styles';
 import ThemedCardHeader from '../../components/CardHeader';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles({
   card: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles({
   cardContent: {
     display: 'flex',
     flexWrap: 'wrap',
-    minHeight: '300px',
+    minHeight: '500px',
   },
 });
 
@@ -26,7 +27,11 @@ export default ({ children }: OwnProps) => {
   return (
     <Card className={classes.card}>
       <ThemedCardHeader title="Metric Breakdown" />
-      <CardContent className={classes.cardContent}>{children ? children : null}</CardContent>
+      <CardContent className={classes.cardContent}>
+        <Grid spacing={0} container>
+          {children ? children : null}
+        </Grid>
+      </CardContent>
     </Card>
   );
 };

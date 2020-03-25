@@ -2,23 +2,16 @@ import React from 'react';
 import MetricContainer from '../Features/Metrics/MetricContainer';
 import LastUpdateList from '../Features/Metrics/LastUpdate/LastUpdateList';
 import TimeSelector from '../Features/Metrics/Header/TimeSelector';
-import { Container, makeStyles } from '@material-ui/core';
-
-const useStyles = makeStyles({
-  container: {
-    width: '74%',
-    margin: 0,
-  },
-});
+import { Grid } from '@material-ui/core';
 
 const Metrics = () => {
-  const classes = useStyles();
-
   return (
     <MetricContainer>
-      <Container className={classes.container}>
-        <TimeSelector />
-      </Container>
+      <Grid item lg={9}>
+        <Grid container spacing={0}>
+          <TimeSelector />
+        </Grid>
+      </Grid>
       <LastUpdateList />
     </MetricContainer>
   );

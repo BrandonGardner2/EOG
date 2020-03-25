@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Switch, InputLabel, makeStyles, Container } from '@material-ui/core';
+import { Switch, InputLabel, makeStyles, Container, Grid } from '@material-ui/core';
 
 import { getLiveStatus } from '../selectors';
 import { updateLiveStatus } from '../reducer';
@@ -18,7 +18,6 @@ const useStyles = makeStyles(theme => {
     checked: {},
     track: {},
     container: {
-      padding: 0,
       display: 'flex',
     },
     label: {
@@ -40,7 +39,7 @@ const TimeSelector = () => {
   };
 
   return (
-    <Container className={classes.container}>
+    <Grid item xs={4} className={classes.container}>
       <InputLabel className={classes.label}>Live Data</InputLabel>
       <Switch
         classes={{ switchBase: classes.switchBase, checked: classes.checked, track: classes.track }}
@@ -48,7 +47,7 @@ const TimeSelector = () => {
         checked={isLive}
         onChange={swapLiveStatus}
       />
-    </Container>
+    </Grid>
   );
 };
 
