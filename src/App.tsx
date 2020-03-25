@@ -8,9 +8,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header';
 import Wrapper from './components/Wrapper';
-import NowWhat from './components/NowWhat';
 import gqlClient from './network/client';
-import MetricContainer from './Features/Metrics/MetricContainer';
+import Metrics from './components/Metrics';
 
 const store = createStore();
 const theme = createMuiTheme({
@@ -34,7 +33,7 @@ const App = () => (
       <GQLProvider value={gqlClient}>
         <Wrapper>
           <Header />
-          <MetricContainer />
+          <Metrics />
           <ToastContainer />
         </Wrapper>
       </GQLProvider>

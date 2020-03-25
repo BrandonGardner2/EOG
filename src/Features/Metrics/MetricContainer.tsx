@@ -8,10 +8,13 @@ const useStyles = makeStyles({
   card: {
     margin: '5% 25%',
   },
+  cardContent: {
+    minHeight: '300px',
+  },
 });
 
 type OwnProps = {
-  children?: any[];
+  children?: any;
 };
 
 // Realistically this could be its own Card component that renders children instead of MetricContainer.
@@ -21,7 +24,7 @@ export default ({ children }: OwnProps) => {
   return (
     <Card className={classes.card}>
       <ThemedCardHeader title="Metric Breakdown" />
-      <CardContent>{children ? children : null}</CardContent>
+      <CardContent className={classes.cardContent}>{children ? children : null}</CardContent>
     </Card>
   );
 };

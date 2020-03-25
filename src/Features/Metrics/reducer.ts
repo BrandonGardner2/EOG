@@ -4,8 +4,8 @@ import { createSlice, PayloadAction } from 'redux-starter-kit';
 // Normally I would put types into their own area that are going to be widely used. For this challenge though,
 // I think it is okay for them to be here so that the reviewer can quickly see what my state looks like.
 export type MetricData = {
-  value: string;
-  at: string;
+  value: number;
+  at: number;
   metric: string;
   unit: string;
 };
