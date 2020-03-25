@@ -2,6 +2,7 @@ import { MetricState, MetricData } from './reducer';
 import { IState } from '../../store/index';
 import { createSelector } from 'redux-starter-kit';
 import sliceDataFromEnd from './utils/sliceData';
+import denormalizeMetricData from './utils/denormalizeData';
 
 const metricStateSelector = (state: IState) => state.metrics;
 
@@ -27,18 +28,17 @@ const getActiveMetrics = createSelector(
   metrics => metrics.activeNames,
 );
 
-// One of the first examples where createSelector comes in handy.
-// We take in the getMetricDataSelector that is already using metricStateSelector
-// No need to define it again or access nested state objects.
 // Returns a callback that takes in a name to return a specific set of data.
 const getMetricDataByName = createSelector(
-  [getMetricData, getMetricDataLimit],
-  (metricData, limit) => (name: string) => {
-    const data = metricData[name] || [];
-    return sliceDataFromEnd(data, limit);
+  [getMetricData],
+  metricData => (name: string) => {
+    return metricData[name] || [];
   },
 );
 
+// One of the first examples where createSelector comes in handy.
+// We take in the getActiveMetrics that is already using metricStateSelector
+// No need to define it again or access nested state objects.
 const getActiveMetricsData = createSelector(
   [getActiveMetrics, getMetricDataByName],
   (activeMetrics, getDataForName) => {
@@ -60,13 +60,17 @@ const getActiveMetricsData = createSelector(
 );
 
 const getDenormalizedActiveData = createSelector(
-  getActiveMetricsData,
-  (dataByName): MetricData[] => {
-    // In retrospect, maybe my data should have been by timestamp the entire time so that this process could be easier.
-    const dataByTimestamp = {};
-
-    return [];
+  [getActiveMetricsData, getMetricDataLimit],
+  (dataByName, limit) => {
+    return denormalizeMetricData(dataByName, limit);
   },
 );
 
-export default { getMetricNames, getMetricData, getMetricDataByName, getMetricDataLimit, getActiveMetricsData };
+export default {
+  getMetricNames,
+  getMetricData,
+  getMetricDataByName,
+  getMetricDataLimit,
+  getActiveMetricsData,
+  getDenormalizedActiveData,
+};

@@ -5,8 +5,9 @@ import { createSlice, PayloadAction } from 'redux-starter-kit';
 // I think it is okay for them to be here so that the reviewer can quickly see what my state looks like.
 export type MetricData = {
   value: string;
-  timestamp: string;
-  metricName: string;
+  at: string;
+  metric: string;
+  unit: string;
 };
 
 export type MetricState = {
