@@ -1,6 +1,10 @@
 import React from 'react';
 import { ListItem, ListItemText, makeStyles } from '@material-ui/core';
 import { MetricData } from '../reducer';
+// I made a definitions file just to have prettier display names.
+// Typically I would expect some kind of display name from the API.
+// but this can be used in absence assuming all possible values are known ahead of time.
+import definitions from '../utils/definitions';
 
 const useStyles = makeStyles({
   listItem: {
@@ -18,9 +22,9 @@ const LastUpdateCard = ({ data }: OwnProps) => {
   const classes = useStyles();
 
   return (
-    <ListItem className={classes.listItem} key={data.metric}>
+    <ListItem className={classes.listItem}>
       <ListItemText
-        primary={data.metric}
+        primary={definitions.metrics[data.metric] || 'Unknown Metric'}
         secondary={`Latest value: ${data.value} ${data.unit}`}
         primaryTypographyProps={{ variant: 'h6' }}
       />

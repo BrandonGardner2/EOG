@@ -17,18 +17,18 @@ const LastUpdateList = () => {
   const classes = useStyles();
   const latestUpdates: MetricData[] = [
     { metric: 'oilTemp', at: 1, unit: 'F', value: 100 },
-    { metric: 'oilTemp', at: 1, unit: 'F', value: 100 },
-    { metric: 'oilTemp', at: 1, unit: 'F', value: 100 },
-    { metric: 'oilTemp', at: 1, unit: 'F', value: 100 },
-    { metric: 'oilTemp', at: 1, unit: 'F', value: 100 },
-    { metric: 'oilTemp', at: 1, unit: 'F', value: 100 },
+    { metric: 'injValveOpen', at: 1, unit: 'F', value: 100 },
+    { metric: 'tubingPressure', at: 1, unit: 'F', value: 100 },
+    { metric: 'casingPressure', at: 1, unit: 'F', value: 100 },
+    { metric: 'waterTemp', at: 1, unit: 'F', value: 100 },
+    { metric: 'flareTemp', at: 1, unit: 'F', value: 100 },
   ];
 
   const lastUpdateCards = useMemo(() => {
     return latestUpdates
       .sort((a: MetricData, b: MetricData) => (a.metric > b.metric ? 1 : -1))
       .map((data: MetricData) => {
-        return <LastUpdateCard data={data} />;
+        return <LastUpdateCard data={data} key={data.metric} />;
       });
   }, [latestUpdates]);
 
