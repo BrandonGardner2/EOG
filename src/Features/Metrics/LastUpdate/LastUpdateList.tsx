@@ -6,7 +6,7 @@ import { MetricData } from '../reducer';
 
 const useStyles = makeStyles({
   container: {
-    // height: '500px',
+    height: '400px',
     padding: '0 16px',
     overflow: 'auto',
   },

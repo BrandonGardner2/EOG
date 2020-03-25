@@ -9,11 +9,6 @@ const useStyles = makeStyles({
   card: {
     margin: '5% 25%',
   },
-  cardContent: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    minHeight: '500px',
-  },
 });
 
 type OwnProps = {
@@ -27,11 +22,9 @@ export default ({ children }: OwnProps) => {
   return (
     <Card className={classes.card}>
       <ThemedCardHeader title="Metric Breakdown" />
-      <CardContent className={classes.cardContent}>
-        <Grid spacing={0} container>
-          {children ? children : null}
-        </Grid>
-      </CardContent>
+      <Grid spacing={0} container>
+        {children ? children : null}
+      </Grid>
     </Card>
   );
 };
