@@ -47,6 +47,11 @@ const metricSlice = createSlice({
     updateLimit(state, action: PayloadAction<number | undefined>) {
       state.limit = action.payload;
     },
+    addDataToMetric(state, action: PayloadAction<MetricData>) {
+      const { metric } = action.payload;
+      if (!state.dataByName[metric]) state.dataByName[metric] = [];
+      state.dataByName[metric].push(action.payload);
+    },
   },
 });
 
@@ -55,4 +60,4 @@ const metricSlice = createSlice({
 const { reducer: metricReducer, actions } = metricSlice;
 export default metricReducer;
 
-export const { addMetricsNames, updateActiveMetrics } = actions;
+export const { addMetricsNames, updateActiveMetrics, updateLimit, addDataToMetric } = actions;
