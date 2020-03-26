@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSubscription } from "urql";
 import { MetricData, addDataToMetric } from "../reducer";
@@ -26,12 +27,16 @@ const useMetricSubscription = () => {
   const data = useSelector(getDenormalizedActiveData);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleNewData = (_: any, { newMeasurement }: NewData) => {
-    // I noticed in weather that dispatch is being passed .type and a payload
-    // but the createSlice function gives us our reducer actions as a usable function.
-    // this allows us to use typescript to our advantage.
-    dispatch(addDataToMetric(newMeasurement));
-  };
+  const handleNewData = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (_: any, { newMeasurement }: NewData) => {
+      // I noticed in weather that dispatch is being passed .type and a payload
+      // but the createSlice function gives us our reducer actions as a usable function.
+      // this allows us to use typescript to our advantage.
+      dispatch(addDataToMetric(newMeasurement));
+    },
+    [dispatch],
+  );
 
   useSubscription({ query: subscription }, handleNewData);
 
