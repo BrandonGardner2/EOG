@@ -61,6 +61,7 @@ const metricSlice = createSlice({
       state.isLive = !state.isLive;
       // Reset data, because we are going to swap from query/subscription
       state.dataByName = {};
+      state.limit = undefined;
     },
   },
 });

@@ -29,16 +29,7 @@ const LineChartComponent = ({ data, min, max, valueKeys }: OwnProps) => {
         <YAxis domain={[min, max]} />
         <Tooltip content={<CustomTooltip />} />
         {valueKeys.map(key => {
-          return (
-            <Line
-              type="monotone"
-              dot={false}
-              dataKey={key.dataKey}
-              stroke={key.stroke}
-              key={key.dataKey}
-              animationDuration={900}
-            />
-          );
+          return <Line type="natural" dot={false} dataKey={key.dataKey} stroke={key.stroke} key={key.dataKey} />;
         })}
         <Legend />
       </LineChart>

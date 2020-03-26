@@ -10,7 +10,7 @@ const LiveChart = () => {
 
   return (
     <>
-      <ChartHeader text="Historical Data" />
+      <ChartHeader text="Live Data" />
       <LineChartComponent data={historicData} min={min} max={max} valueKeys={valueKeys} />
     </>
   );
