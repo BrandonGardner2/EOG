@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from 'redux-starter-kit';
+import { createSlice, PayloadAction } from "redux-starter-kit";
 
 export type WeatherForLocation = {
   description: string;
@@ -13,14 +13,14 @@ export type ApiErrorAction = {
 const initialState = {
   temperatureinCelsius: 0,
   temperatureinFahrenheit: 0,
-  description: '',
-  locationName: '',
+  description: "",
+  locationName: "",
 };
 
 const toF = (c: number) => (c * 9) / 5 + 32;
 
 const slice = createSlice({
-  name: 'weather',
+  name: "weather",
   initialState,
   reducers: {
     weatherDataRecevied: (state, action: PayloadAction<WeatherForLocation>) => {
@@ -30,9 +30,10 @@ const slice = createSlice({
       state.description = description;
       state.locationName = locationName;
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     weatherApiErrorReceived: (state, action: PayloadAction<ApiErrorAction>) => state,
   },
 });
 
-export const reducer = slice.reducer;
-export const actions = slice.actions;
+export const { reducer } = slice;
+export const { actions } = slice;
