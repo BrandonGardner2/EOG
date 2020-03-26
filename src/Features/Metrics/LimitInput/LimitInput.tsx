@@ -63,7 +63,7 @@ const LimitInput = () => {
         type="number"
         onChange={handleChange}
       />
-      <DeleteIcon className={classes.icon} onClick={handleReset} />
+      {currentLimit ? <DeleteIcon className={classes.icon} onClick={handleReset} /> : null}
     </Grid>
   );
 };
