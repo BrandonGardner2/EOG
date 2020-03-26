@@ -1,0 +1,8 @@
+*
+!public
+!src
+!package.json
+!yarn.lock
+!tsconfig.json
+!.eslintrc.js
+!nginx.conf
