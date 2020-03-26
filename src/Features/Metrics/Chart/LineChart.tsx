@@ -1,7 +1,6 @@
 import React from "react";
 import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line, ResponsiveContainer, Legend } from "recharts";
 
-// import { ChartData } from "../../store/reducers/data/data.reducer";
 import CustomizedAxisTick from "./CustomTick";
 import { DenormalizedData } from "../utils/denormalizeData";
 import CustomTooltip from "./CustomTooltip";
